@@ -21,8 +21,37 @@ export const navigation = [
   },
   {
     text: 'Table',
-    path: '/table',
-    icon: 'inserttable'
+    icon: 'inserttable',
+    hint: 'Table',
+    items: [
+      {
+        text: 'Employees',
+        path: '/employee-table'
+      },
+      {
+        text: 'Company',
+        path: '/company-table'
+      },
+      {
+        text: 'Company-Employee',
+        path: '/company-employee-table'
+      }
+    ]
+  },
+  {
+    text: 'Html Editor',
+    path: '/html-editor',
+    icon: 'textdocument'
+  },
+  {
+    text: 'Tile View',
+    path: '/tile',
+    icon: 'textdocument'
+  },
+  {
+    text: 'Text Box',
+    path: '/text-box',
+    icon: 'textdocument'
   },
   {
     text: 'File Manager',

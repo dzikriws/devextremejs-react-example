@@ -9,3 +9,8 @@ export { GalleryPage } from './gallery/gallery';
 export { FileManagerPage } from './file-manager/FileManager';
 export { Table } from './table/Table';
 export { MapPage } from './map/Map';
+export { TileViewPage } from './tile-view/TileView';
+export { TextBoxPage } from './text-box/TextBox';
+export { HtmlEditorPage } from './html-editor/HtmlEditor';
+export { CompanyTable } from './table/CompanyTable';
+export { CompanyEmployeeTable } from './table/CompanyEmployeeTable';

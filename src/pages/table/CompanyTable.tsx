@@ -6,10 +6,10 @@ import axios from "axios";
 import { Workbook } from 'exceljs';
 import saveAs from 'file-saver';
 
-const API_URL = 'http://localhost:3000/employee';
+const API_URL = 'http://localhost:3000/company';
 
 const store = new CustomStore({
-    key: 'employee_id',
+    key: 'company_id',
     load: async (loadOptions: any) => {
         try {
         const response = await axios.get(API_URL, {
@@ -58,7 +58,7 @@ const store = new CustomStore({
 });
 
 
-export function Table() {
+export function CompanyTable() {
 
     // ini dipakai kalo client handling, bukan dari backend
 	// const handleRowInserting = useCallback((e : any) => {
@@ -129,7 +129,7 @@ export function Table() {
                 }
 				// dataSource={employees} // ini dipakai kalo client handling
 				dataSource={store}
-				keyExpr="employee_id"
+				keyExpr="company_id"
                 remoteOperations={true} // Wajib, jika ingin menghubungkan ke data dari backend juga untuk filtering dan searching
 				allowColumnReordering={true}
 				allowColumnResizing={true}
@@ -165,21 +165,15 @@ export function Table() {
 					displayMode: "compact"
 				}}
 				>
-				<Column dataField="full_name" dataType="string" fixed={true}></Column>
-				<Column dataField="position" dataType="string"></Column>
-				<Column
-					dataField="birth_date"
-					dataType="date">
-				</Column>
-				<Column
-					dataField="hire_date"
-					dataType="date">
-				</Column>
+				<Column dataField="company_name" dataType="string" fixed={true}></Column>
+				<Column dataField="address" dataType="string"></Column>
 				<Column dataField="city" dataType="string" visible={false}/>
-				<Column dataField="country" dataType="string" visible={false}></Column>
-				<Column dataField="address" dataType="string" visible={false} />
-				<Column dataField="home_phone" dataType="string" visible={false}/>
-				<Column dataField="postal_code" dataType="string" visible={false}/>
+				<Column dataField="region" dataType="string" visible={false}></Column>
+				<Column dataField="postal_code" dataType="string" visible={false} />
+				<Column dataField="contact_person" dataType="string"/>
+				<Column dataField="phone" dataType="string" visible={false}/>
+				<Column dataField="website" dataType="string" visible={false}/>
+				<Column dataField="country" dataType="string"/>
                 <Column
                     type="buttons"
                     caption="Aksi"
