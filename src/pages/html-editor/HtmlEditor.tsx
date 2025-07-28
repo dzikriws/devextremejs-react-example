@@ -1,28 +1,67 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { HtmlEditor, Toolbar, Item, TableContextMenu, MediaResizing, ImageUpload } from 'devextreme-react/html-editor';
+// import CheckBox, { type CheckBoxTypes } from 'devextreme-react/check-box';
+// import SelectBox, { type SelectBoxTypes } from 'devextreme-react/select-box';
 import { Button } from 'devextreme-react';
 
 const sizeValues = [ "8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt" ];
 const fontValues = [ "Arial", "Georgia", "Tahoma", "Times New Roman", "Verdana" ];
 const headerValues = [ false, 1, 2, 3, 4, 5 ];
-const fu_options = { maxFileSize: 4000000 };
-const token = '123'
+// const fu_options = { maxFileSize: 4000000 };
+// const token = '123'
+
+// interface Tab {
+//   name: string,
+//   value: ('file' | 'url')[],
+// }
+// const tabs: Tab[] = [
+//   { name: 'From This Device', value: ['file'] },
+//   { name: 'From the Web', value: ['url'] },
+//   { name: 'Both', value: ['file', 'url'] },
+// ];
+
+// const tabLabel = { 'aria-label': 'Tab' };
+
 
 export const HtmlEditorPage = () => {
+	// const [isMultiline, setIsMultiline] = useState(true);
+	// const [currentTab, setCurrentTab] = useState(tabs[2].value);
+
+	// const multilineChanged = useCallback((e: CheckBoxTypes.ValueChangedEvent) => {
+	// 	setIsMultiline(e.value);
+	// }, [setIsMultiline]);
+
+	// const currentTabChanged = useCallback((e: SelectBoxTypes.ValueChangedEvent) => {
+	// 	setCurrentTab(e.value);
+	// }, [setCurrentTab]);
+
 
     const editorRef = useRef<any>(null);
 
     const handleSubmit = () => {
         const htmlContent = editorRef.current?.instance?.option('value');
         console.log('Isi editor:', htmlContent);
-        // Lalu bisa kamu simpan ke server lewat axios/fetch
     };
 
 	return (
 		<React.Fragment>
 			<HtmlEditor
-                
-            >
+				ref={editorRef}
+			>
+				<MediaResizing enabled={true} />
+				<ImageUpload 
+					fileUploadMode='base64'
+					tabs={ ['file', 'url']}
+					// uploadUrl='http://localhost:3000/api/upload'
+					// fileUploaderOptions={
+                    //     {
+                    //         ...fu_options,
+                    //         onUploadError(e) {
+                    //             console.log(e);
+                    //         },
+                    //     }
+                    // }
+				/>
 				<Toolbar multiline={true}>
 					<Item name="undo" />
 					<Item name="redo" />
@@ -66,26 +105,30 @@ export const HtmlEditorPage = () => {
 					<Item name="cellProperties" />
 					<Item name="tableProperties" />
 				</Toolbar>
-				<ImageUpload 
-					fileUploadMode='server' 
-					tabs={ ['file', 'url']}
-					uploadUrl='http://localhost:3000/api/upload'
-					uploadDirectory='/upload'
-					fileUploaderOptions={
-                        {
-                            ...fu_options, 
-                            uploadHeaders: {
-                                Authorization: `Bearer ${token}`
-                            },
-                            onUploadError(e) {
-                                console.log(e);
-                            },
-                        }
-                    }
-				/>
 				<TableContextMenu enabled={true} />
 				<MediaResizing enabled={true} />
 			</HtmlEditor>
+			{/* <div className="options">
+				<div className="caption">Options</div>
+				<div className="option">
+				<CheckBox
+					text="Multiline toolbar"
+					value={isMultiline}
+					onValueChanged={multilineChanged}
+				/>
+				</div>
+				<div className="option">
+				<div className="label">Image upload tabs:</div>
+				<SelectBox
+					items={tabs}
+					value={currentTab}
+					valueExpr="value"
+					inputAttr={tabLabel}
+					displayExpr="name"
+					onValueChanged={currentTabChanged}
+				/>
+				</div>
+			</div> */}
 
             <Button
                 onClick={handleSubmit}
