@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { DataGrid, Column } from 'devextreme-react/data-grid';
 import notify from "devextreme/ui/notify";
 import CustomStore from 'devextreme/data/custom_store';
